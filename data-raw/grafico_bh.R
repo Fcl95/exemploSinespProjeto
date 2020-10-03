@@ -1,3 +1,17 @@
-## code to prepare `grafico_bh` dataset goes here
+library(ggplot2)
+library(dplyr)
 
-usethis::use_data(grafico_bh, overwrite = TRUE)
+
+#importacao
+dados_sinesp <- readr::read_rds("data/dados_sinesp.rds")
+
+
+#visualizacao
+
+dados_sinesp %>%
+  filter(municipio == "Belo Horizonte") %>%
+  ggplot() +
+  geom_line(aes(x = mes_ano, y = vitimas)) +
+  labs(x = "Mês", y = "Número de vítimas") +
+  theme_minimal()
+
